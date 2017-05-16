@@ -1,0 +1,241 @@
+body {
+  cursor: url("http://ionicframework.com/img/finger.png"), auto;
+}
+* {
+  font-family: roboto-condensed-light;
+}
+.platform-android .header-item.title {
+  transition-duration: 0ms;
+}
+.platform-android .header-item.buttons {
+  transition-duration: 0ms;
+}
+.customBar{
+	border: 0px !important;
+	border-bottom-color: transparent !important;
+	background-image: none !important;
+	border-bottom: none !important;
+	background: #2A9D8F !important;
+	text-transform: uppercase !important;
+	letter-spacing: 1px !important;
+}
+#customContent{
+	letter-spacing: 2px;
+	border: 0px !important;
+	border-bottom-color: transparent !important;
+	background-image: none !important;
+	border-bottom: none !important;
+	background: #50514F !important;
+}
+#colHead{
+	font-size: 0.9em;
+	color: #fff;
+	font-weight: 300;
+	text-align: center;
+}
+#colData{
+	margin-top: 30px;
+	margin-bottom: 30px;
+	font-size: 3em;
+	font-weight: 300;
+	color: #00A8E8;
+	font-weight: 300;
+	text-align: center;
+}
+#colDataSubText{
+	font-size: 0.4em !important;
+	color: #FDE74C;
+}
+#header{
+	letter-spacing: 1px;
+	text-align: center;
+	padding: 10px;
+	margin-bottom: 10px;
+	margin-left: 50px;
+	margin-right: 50px;
+	font-size: 1.5em;
+	text-transform: uppercase;
+	color: #9BC53D;
+	border-bottom: solid 1px #666;
+}
+
+/*---------------Loading animation-------------*/
+.loading-container .loading{
+	background: none !important;
+}
+.spinner {
+  width: 100%;
+  height: 50px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  text-align: center;
+}
+.spinner .ball {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  border: 0.2rem solid rgba(255, 255, 255, 0.2);
+  -webkit-animation: spin 1s infinite linear;
+          animation: spin 1s infinite linear;
+}
+.ball {
+	border-top-color: #1DD381 !important;
+}
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+.newLoadingText {
+  color: #1DD381;
+  margin-top: 5px;
+  font-family: sans-serif;
+  letter-spacing: 2px;
+  font-size: 1.3em;
+  background: none !important;
+}
+@keyframes motion {
+  0% {
+    -webkit-transform: translateX(0) scale(1);
+            transform: translateX(0) scale(1);
+  }
+  25% {
+    -webkit-transform: translateX(-50px) scale(0.3);
+            transform: translateX(-50px) scale(0.3);
+  }
+  50% {
+    -webkit-transform: translateX(0) scale(1);
+            transform: translateX(0) scale(1);
+  }
+  75% {
+    -webkit-transform: translateX(50px) scale(0.3);
+            transform: translateX(50px) scale(0.3);
+  }
+  100% {
+    -webkit-transform: translateX(0) scale(1);
+            transform: translateX(0) scale(1);
+  }
+}
+/*---------------------------------------------*/
+#navButton{
+  color: #fff;
+  /*font-size: 30px;
+  padding-right: 10px;
+  padding-top: 3px;
+  padding-left: 10px;*/
+}
+#contentButton{
+  color: #fff;
+  font-size: 20px;
+  float: right;
+}
+#menuAdd{
+  text-align: center;
+}
+#menuDelete{
+  color: rgba(244,91,105,1);
+}
+input{
+  letter-spacing: 0.1rem;
+  font-weight: 400;
+  padding-left: 5px !important;
+  padding-right: 5px !important;
+  color: #444 !important;
+  border-bottom: solid 1px #ccc !important;
+}
+input::-webkit-input-placeholder{
+  font-weight: 400;
+  font-size: 1em;
+  color: #444;
+  border-bottom: solid 1px #eee !important;
+}
+.settingsPopup .popup {
+  background-color: #fff;
+  border: none;
+  width: 80%;
+}
+.settingsPopup .popup-body {
+    background-color: #fff;
+}
+.settingsPopup .popup-head {
+  background-color: rgba(0,193,106,0.7);
+  border: none;
+}
+.settingsPopup .popup-title{
+  color: #fff;
+  letter-spacing: 1px;
+  font-weight: 400;
+}
+.settingsPopup .popup-sub-title{
+  color: #fff !important;
+  letter-spacing: 1px;
+  font-weight: 400;
+}
+#listItem{
+  border-bottom: solid 1px #eee !important;
+}
+.deletePopup .popup-head {
+  background-color: rgba(239,71,58,0.9);
+  border: none;
+}
+.deletePopup .popup-title{
+  color: #fff;
+  letter-spacing: 1px;
+  font-weight: 400;
+}
+#borderlessList, #borderlessItem{
+  border: none;
+}
+#configUnitDelete{
+  float: right;
+}
+#configUnitHead{
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #444;
+  text-transform: uppercase;
+}
+
+/*----------Fade----------*/
+
+.fade.ng-enter {
+  -webkit-transition: 0.3s linear all;
+  transform: translateX(-30px);
+  opacity: 0;
+}
+.fade.ng-enter.ng-enter-active {
+  transform: translateX(0);
+  opacity: 1;
+}
+.fade.ng-leave {
+  -webkit-transition: 0.3s linear all;
+  transform: translateX(0);
+  /*background-color: rgba(155,197,61,0.7) !important;*/
+  opacity: 1;
+}
+.fade.ng-leave.ng-leave-active {
+  transform: translateX(30px);
+    opacity: 0;
+}
+
+.fadeEnter.ng-enter {
+  -webkit-transition: 0.3s linear all;
+  transform: translateX(-30px);
+  opacity: 0;
+}
+.fadeEnter.ng-enter.ng-enter-active {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/*------------------------*/

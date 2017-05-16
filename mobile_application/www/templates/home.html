@@ -1,0 +1,157 @@
+<ion-view view-title="Dashboard">
+	<ion-nav-buttons side="right">
+		<button class="button-icon ion-android-more-horizontal" id="navButton" ng-click="openPopover($event)"></button>
+	</ion-nav-buttons>
+	<ion-content id="customContent" class="padding">
+		<div ng-show="visibility==true">
+			<button class="button-icon ion-android-settings" id="contentButton" ng-click="openModal()"></button>
+			<div id="header">{{currLocation}}</div>
+			<div id="occuData">
+				<!-- <div class="row">
+					<div class="col item-text-wrap" id="colHead">
+						Time
+					</div>
+				</div> -->
+				<div class="row">
+					<div class="col item-text-wrap" id="colHead">
+						Time
+					</div>
+					<div class="col item-text-wrap" id="colHead">
+						{{liveData['std_temp']['name']}}
+					</div>
+				</div>
+				<div class="row">
+					<div class="col item-text-wrap" id="colData">
+						<span ng-bind="currTime"></span>&nbsp;<span id="colDataSubText" ng-bind="currTimeSec"></span>
+					</div>
+					<div class="col item-text-wrap" id="colData">
+						<span count-to="{{liveData['std_temp']['value']}}" value="{{stdTempOld}}" duration="1"></span>&nbsp;<span id="colDataSubText" ng-bind="liveData['std_temp']['unit']"></span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col item-text-wrap" id="colHead">
+						{{liveData['occupants']['name']}}
+					</div>
+					<div class="col item-text-wrap" id="colHead">
+						{{liveData['ambient_temp']['name']}}
+					</div>
+				</div>
+				<div class="row">
+					<div class="col item-text-wrap" id="colData">
+						<span count-to="{{liveData['occupants']['value']}}" value="{{occOld}}" duration="1"></span>
+					</div>
+					<div class="col item-text-wrap" id="colData">
+						<span count-to="{{liveData['ambient_temp']['value']}}" value="{{tempOld}}" duration="1"></span>&nbsp;<span id="colDataSubText" ng-bind="liveData['ambient_temp']['unit']"></span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col item-text-wrap" id="colHead">
+						{{liveData['sugg_temp']['name']}}
+					</div>
+					<div class="col item-text-wrap" id="colHead">
+						{{liveData['curr_temp']['name']}}
+					</div>
+				</div>
+				<div class="row">
+					<div class="col item-text-wrap" id="colData">
+						<span count-to="{{liveData['sugg_temp']['value']}}" value="{{stdTempOld}}" duration="1"></span>&nbsp;<span id="colDataSubText" ng-bind="liveData['sugg_temp']['unit']"></span>
+					</div>
+					<div class="col item-text-wrap" id="colData">
+						<span count-to="{{liveData['curr_temp']['value']}}" value="{{tempOld}}" duration="1"></span>&nbsp;<span id="colDataSubText" ng-bind="liveData['curr_temp']['unit']"></span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col item-text-wrap" id="colHead">
+						{{liveData['energy']['name']}}
+					</div>
+					<div class="col item-text-wrap" id="colHead">
+						{{liveData['cost']['name']}}
+					</div>
+				</div>
+				<div class="row">
+					<div class="col item-text-wrap" id="colData">
+						<span count-to="{{liveData['energy']['value']}}" value="{{energyOld}}" duration="1"></span>&nbsp;<span id="colDataSubText" ng-bind="liveData['energy']['unit']"></span>
+					</div>
+					<div class="col item-text-wrap" id="colData">
+						<span count-to="{{liveData['cost']['value']}}" value="{{costOld}}" duration="1"></span>&nbsp;<span id="colDataSubText" ng-bind="liveData['cost']['unit']"></span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col item-text-wrap" id="colHead">
+						{{liveData['saved']['name']}}
+					</div>
+				</div>
+				<div class="row">
+					<div class="col item-text-wrap" id="colData">
+						<span count-to="{{liveData['saved']['value']}}" value="{{savingOld}}" duration="1"></span>&nbsp;<span id="colDataSubText" ng-bind="liveData['saved']['unit']"></span><br><span id="colDataSubText" ng-bind="saved"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+	<script id="popover.html" type="text/ng-template">
+	  <ion-popover-view>
+	    <ion-header-bar>
+	      <h1 class="title">Profile</h1>
+	      <button class="button button-icon icon ion-android-add" ng-click="menuSelect('add')"></button>
+	    </ion-header-bar>
+	    <ion-content>
+	      <ion-list ng-repeat="item in liveData['location']">
+	        <ion-item class="item item-button-right" id="listItem">
+	        	<div ng-click="menuSelect(item.tag,item)">
+			    	{{item.name}}
+		    	</div>
+			    <button class="button button-clear" ng-click="menuSelect('delete',item)">
+			      <i class="icon ion-android-delete" id="menuDelete"></i>
+			    </button>
+		    </ion-item>
+	      </ion-list>
+	    </ion-content>
+	  </ion-popover-view>
+	</script>
+	<script id="configModal.html" type="text/ng-template">
+		<ion-modal-view>
+			<ion-header-bar class="bar bar-header bar-calm">
+				<button class="button button-clear button-primary" ng-click="closeModal()">Cancel</button>
+				<h1 class="title">Configuration</h1>
+				<button class="button button-icon button-clear button-primary ion-android-add" ng-click="configEdit('add',item)"></button>
+			</ion-header-bar>
+			<ion-content class="padding">
+				<div class="card fade" ng-repeat="item in parameters.set track by item.uid">
+					<div class="item item-divider">
+						<div class="item item-button-right" style="background: #f5f5f5;">
+							<div id="configUnitHead">{{item.name}}</div>
+							<button class="button button-clear" ng-click="configEdit('delete',item)" ng-if="enableDelete==true">
+					      		<i class="icon ion-android-delete" id="menuDelete"></i>
+						    </button>
+						</div>
+					</div>
+					<div class="item item-text-wrap">
+						<div class="list">
+							<label class="item item-input" id="borderlessItem">
+								<span class="input-label">Ton</span>
+								<input type="number" ng-model="parameters.set[item.id].ton">
+							</label>
+							<label class="item item-input" id="borderlessItem">
+								<span class="input-label">Start Rating</span>
+								<input type="number" ng-model="parameters.set[item.id].starRating">
+							</label>
+							<div class="item item-toggle" id="borderlessItem">
+								On /Off
+								<label class="toggle toggle-balanced">
+									<input type="checkbox" ng-model="parameters.set[item.id].status" value="1">
+									<div class="track">
+										<div class="handle"></div>
+									</div>
+								</label>
+							</div>
+						</div>
+					</div>
+					<!-- <div class="item item-divider">
+						I'm a Footer in a Card!
+					</div> -->
+				</div>
+			</ion-content>
+		</ion-modal-view>
+	</script>
+</ion-view>
